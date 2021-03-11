@@ -1,10 +1,10 @@
-# Demo Rabbit Retry and Exponential Backoff
+# Demo Rabbit Exponential Backoff with Retry
 
 ## This Article is demo project implementation AMQP Rabbitmq
 
 ### Requirement
 * Spring Boot 2.4.x
-* Rabbit Server 3.8.5
+* Rabbit Server
 
 ### Why using Retry and Backoff
 In some cases of transaction processes, we sometimes face problems if an ongoing process fails, therefore there is a strategy so that the failed process can be reproduced by the system we created.
