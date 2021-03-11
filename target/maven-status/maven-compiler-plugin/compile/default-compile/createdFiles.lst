@@ -1,0 +1,8 @@
+demo/rabbit/producer/model/Request$Builder.class
+demo/rabbit/producer/model/Request.class
+demo/rabbit/producer/handler/DefaultPublishQueueHandler.class
+demo/rabbit/consumer/listener/ListenerHandler.class
+demo/rabbit/consumer/Application.class
+demo/rabbit/consumer/listener/ListenerConfiguration.class
+demo/rabbit/producer/handler/HandlerConfiguration.class
+demo/rabbit/producer/handler/PublishQueueHandler.class
