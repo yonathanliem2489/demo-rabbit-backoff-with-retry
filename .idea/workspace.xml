@@ -23,7 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba6ded3-de90-466e-ba09-f84623ab8346" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,9 +121,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="529" y="361" key="Git.Rebase.Log.Action.NewCommitMessage.Dialog/0.0.1440.900@0.0.1440.900" timestamp="1615454962392" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1615454780100">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1615457481446">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1615454780100" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1615457481446" />
   </component>
 </project>
