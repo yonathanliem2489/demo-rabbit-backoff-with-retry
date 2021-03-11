@@ -18,7 +18,7 @@ public class RetryQueues {
     }
 
     public long getTimeToWait(int retry) {
-        double time = initialInterval * Math.pow(factor, (double) retry);
+        double time = initialInterval * Math.pow(factor, retry);
         if (time > maxWait) {
             return maxWait;
         }

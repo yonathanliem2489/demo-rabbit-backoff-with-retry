@@ -53,8 +53,12 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
         this.observer = observer;
     }
 
-    private Object tryConsume(MethodInvocation invocation, Consumer<MessageAndChannel> successHandler, BiConsumer<MessageAndChannel, Throwable> errorHandler) throws Throwable {
-        MessageAndChannel mac = new MessageAndChannel((Message) invocation.getArguments()[1], (Channel) invocation.getArguments()[0]);
+    private Object tryConsume(MethodInvocation invocation,
+        Consumer<MessageAndChannel> successHandler,
+        BiConsumer<MessageAndChannel, Throwable> errorHandler) throws Throwable {
+
+        MessageAndChannel mac = new MessageAndChannel((Message) invocation.getArguments()[1],
+            (Channel) invocation.getArguments()[0]);
         Object ret = null;
         try {
             ret = invocation.proceed();
