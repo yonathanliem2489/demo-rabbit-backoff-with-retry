@@ -5,9 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
 import demo.rabbit.retry.backoff.config.BindingConfiguration;
+import java.io.Serializable;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -109,9 +112,9 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
             .getDeliveryTag(), false);
     }
 
-    private class MessageAndChannel {
-        private Message message;
-        private Channel channel;
+    private static class MessageAndChannel {
+        private final Message message;
+        private final Channel channel;
 
         private MessageAndChannel(Message message, Channel channel) {
             this.message = message;
@@ -133,10 +136,13 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
             });
     }
 
-    @Data
+    @Getter
     @ToString
-    private static class ParkingLot {
-        private String problem;
+    @EqualsAndHashCode
+    private static class ParkingLot implements Serializable {
+
+        private static final long serialVersionUID = 5510074191983722944L;
+        private final String problem;
 
         @JsonCreator
         @lombok.Builder(builderClassName = "Builder")
