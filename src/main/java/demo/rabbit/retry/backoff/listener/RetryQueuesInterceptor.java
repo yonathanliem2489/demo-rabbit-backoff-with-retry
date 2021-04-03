@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
 import demo.rabbit.retry.backoff.config.BindingConfiguration;
+import demo.rabbit.retry.backoff.model.Request;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -28,10 +29,13 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
 
     private Runnable observer;
 
+    private final ObjectMapper mapper;
+
     public RetryQueuesInterceptor(RabbitTemplate rabbitTemplate, RetryQueues retryQueues,
         ObjectMapper objectMapper) {
         this.rabbitTemplate = rabbitTemplate;
         this.retryQueues = retryQueues;
+        this.mapper = objectMapper;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
                 }
 
                 log.error("retry exhausted caused {}", t.getMessage());
-                publishToParkingLotQueue(t.getMessage(), mac.message.getMessageProperties());
+                publishToParkingLotQueue(t.getCause().getMessage(), mac.message);
                 throw new RuntimeException(t);
             }
         });
@@ -97,8 +101,8 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
     }
 
     private void sendToNextRetryQueue(MessageAndChannel mac, int retryCount) throws Exception {
-        rabbitTemplate.convertAndSend(BindingConfiguration.EXCHANGE_NAME,
-            BindingConfiguration.ROUTING_WAIT_KEY, mac.message, m -> {
+        rabbitTemplate.convertAndSend(BindingConfiguration.NON_BLOCKING_EXCHANGE_NAME,
+            BindingConfiguration.NON_BLOCKING_ROUTING_WAIT_KEY, mac.message, m -> {
             MessageProperties props = m.getMessageProperties();
             props.setExpiration(String.valueOf(retryQueues.getTimeToWait(retryCount)));
             props.setHeader("x-retried-count", String.valueOf(retryCount + 1));
@@ -122,18 +126,23 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
         }
     }
 
-    private void publishToParkingLotQueue(String message,
-        MessageProperties messageProperties) {
-        rabbitTemplate.convertAndSend(BindingConfiguration.EXCHANGE_NAME,
-            BindingConfiguration.PARKING_KEY, ParkingLot.builder()
-                .problem(message)
-                .build(), processor -> {
+    private void publishToParkingLotQueue(String problem,
+        Message message) {
+        try {
+            rabbitTemplate.convertAndSend(BindingConfiguration.NON_BLOCKING_EXCHANGE_NAME,
+                BindingConfiguration.NON_BLOCKING_PARKING_KEY, ParkingLot.builder()
+                    .problem(problem)
+                    .request(mapper.readValue(message.getBody(), Request.class).toString())
+                    .build(), processor -> {
 
-                // you can set failed information in header properties
-                processor.getMessageProperties().setHeader("total-retried",
-                    messageProperties.getHeader("x-retried-count"));
-                return processor;
-            });
+                    // you can set failed information in header properties
+                    processor.getMessageProperties().setHeader("total-retried",
+                        message.getMessageProperties().getHeader("x-retried-count"));
+                    return processor;
+                });
+        } catch (IOException e) {
+            log.error("error parse {}", e.getMessage());
+        }
     }
 
     @Getter
@@ -143,11 +152,13 @@ public class RetryQueuesInterceptor implements MethodInterceptor {
 
         private static final long serialVersionUID = 5510074191983722944L;
         private final String problem;
+        private final String request;
 
         @JsonCreator
         @lombok.Builder(builderClassName = "Builder")
-        ParkingLot(@JsonProperty String problem) {
+        ParkingLot(@JsonProperty String problem, @JsonProperty String request) {
             this.problem = problem;
+            this.request = request;
         }
     }
 }

@@ -8,19 +8,41 @@ import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.interceptor.RetryOperationsInterceptor;
 
+@EnableRabbit
 @Configuration
 public class ListenerConfiguration {
 
   @Bean
-  public SimpleRabbitListenerContainerFactory defaultContainerFactory(ConnectionFactory connectionFactory) {
+  public ObservableRejectAndDontRequeueRecoverer observableRecoverer(RabbitTemplate rabbitTemplate,
+      ObjectMapper mapper) {
+    return new ObservableRejectAndDontRequeueRecoverer(rabbitTemplate, mapper);
+  }
+
+  @Bean
+  public RetryOperationsInterceptor retryInterceptor(RabbitTemplate rabbitTemplate, ObjectMapper mapper) {
+    return RetryInterceptorBuilder.stateless()
+        .backOffOptions(5000, 3.0, 7000)
+        .maxAttempts(3)
+        .recoverer(observableRecoverer(rabbitTemplate, mapper))
+        .build();
+  }
+
+  @Bean
+  public SimpleRabbitListenerContainerFactory retryContainerFactory(ConnectionFactory connectionFactory, RetryOperationsInterceptor retryInterceptor) {
     SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
     factory.setConnectionFactory(connectionFactory);
+
+    Advice[] adviceChain = { retryInterceptor };
+    factory.setAdviceChain(adviceChain);
 
     return factory;
   }

@@ -13,9 +13,6 @@ public class HandlerConfiguration {
   @Bean
   PublishingHandler publisherBackoffHandler(RabbitTemplate rabbitTemplate,
       ObjectMapper objectMapper) {
-    rabbitTemplate.setDefaultReceiveQueue(BindingConfiguration.QUEUE_NAME);
-    rabbitTemplate.setExchange(BindingConfiguration.EXCHANGE_NAME);
-    rabbitTemplate.setRoutingKey(BindingConfiguration.ROUTING_KEY_NAME);
     rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter(objectMapper));
     return new DefaultPublishingHandler(rabbitTemplate, objectMapper);
   }

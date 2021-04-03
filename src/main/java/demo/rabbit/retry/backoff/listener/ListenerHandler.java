@@ -26,12 +26,22 @@ public class ListenerHandler {
     this.rabbitTemplate = rabbitTemplate;
   }
 
-  @RabbitListener(queues = BindingConfiguration.QUEUE_NAME, containerFactory = "retryQueuesContainerFactory",
-      ackMode = "MANUAL")
-  public void consumeNonBlocking(Message message) {
-    log.info("Processing message from demo queue: {}", message.getBody());
+  @RabbitListener(queues = BindingConfiguration.QUEUE_NAME, containerFactory = "retryContainerFactory")
+  public void consumeBlocking(Message message) throws IOException {
+    Request payload = objectMapper.readValue(message.getBody(), Request.class);
+    log.info("Processing message from demo queue: {}", payload.getKey());
 
-    Mono.error(new Exception("Error occured!")).block();
+    Mono.error(new IllegalAccessException("Error occured!")).block();
+  }
+
+  @RabbitListener(queues = BindingConfiguration.NON_BLOCKING_QUEUE_NAME,
+      containerFactory = "retryQueuesContainerFactory",
+      ackMode = "MANUAL")
+  public void consumeNonBlocking(Message message) throws IOException {
+    Request payload = objectMapper.readValue(message.getBody(), Request.class);
+    log.info("Processing non-blocking message from demo queue: {}", payload.getKey());
+
+    Mono.error(new IllegalStateException("Error occured!")).block();
   }
 
 }

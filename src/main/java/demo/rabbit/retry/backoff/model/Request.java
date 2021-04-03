@@ -19,18 +19,9 @@ public class Request implements Serializable {
 
   private String key;
 
-
-//  @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
-//  private LocalDate dateTime;
-
   @JsonCreator
   @lombok.Builder(builderClassName = "Builder")
-  Request(@JsonProperty("key") String key
-//      @JsonProperty("dateTime")
-//      @JsonFormat(pattern = "yyyy-MM-dd")
-//          LocalDate dateTime
-  ) {
+  Request(@JsonProperty("key") String key) {
     this.key = key;
-//    this.dateTime = dateTime;
   }
 }

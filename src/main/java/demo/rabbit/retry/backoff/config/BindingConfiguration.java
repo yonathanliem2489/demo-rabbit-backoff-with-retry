@@ -12,12 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class BindingConfiguration {
   public static final String QUEUE_NAME = "demo.retry.backoff.queue";
   public static final String EXCHANGE_NAME = "demo.retry.backoff.exchange";
-
   public static final String ROUTING_KEY_NAME = QUEUE_NAME + ".key";
-
-  public static final String WAIT_QUEUE = QUEUE_NAME + ".wait";
-  public static final String ROUTING_WAIT_KEY = WAIT_QUEUE + ".key";
-
   public static final String PARKING_QUEUE = QUEUE_NAME + ".parking";
   public static final String PARKING_KEY = PARKING_QUEUE + ".key";
 
@@ -28,21 +23,14 @@ public class BindingConfiguration {
 
   @Bean
   public Queue queue() {
-    return QueueBuilder.nonDurable(QUEUE_NAME)
-        .build();
-  }
-
-  @Bean
-  public Queue waitQueue() {
-    return QueueBuilder.nonDurable(WAIT_QUEUE)
-        .deadLetterExchange(EXCHANGE_NAME)
-        .deadLetterRoutingKey(ROUTING_KEY_NAME)
+    return QueueBuilder.durable(QUEUE_NAME)
         .build();
   }
 
   @Bean
   Queue parkingQueue() {
-    return new Queue(PARKING_QUEUE);
+    return QueueBuilder.durable(PARKING_QUEUE)
+        .build();
   }
 
   @Bean
@@ -52,14 +40,69 @@ public class BindingConfiguration {
   }
 
   @Bean
-  Binding waitBinding() {
-    return BindingBuilder.bind(waitQueue()).to(exchange())
-        .with(ROUTING_WAIT_KEY);
-  }
-
-  @Bean
   Binding parkingBinding() {
     return BindingBuilder.bind(parkingQueue()).to(exchange())
         .with(PARKING_KEY);
   }
+
+  // non blocking
+  public static final String NON_BLOCKING_QUEUE_NAME = "demo.retry.backoff.non-blocking.queue";
+  public static final String NON_BLOCKING_EXCHANGE_NAME = "demo.retry.backoff.non-blocking.exchange";
+
+  public static final String NON_BLOCKING_ROUTING_KEY_NAME = NON_BLOCKING_QUEUE_NAME + ".key";
+
+  public static final String NON_BLOCKING_WAIT_QUEUE = NON_BLOCKING_QUEUE_NAME + ".wait";
+  public static final String NON_BLOCKING_ROUTING_WAIT_KEY = NON_BLOCKING_WAIT_QUEUE + ".key";
+
+  public static final String NON_BLOCKING_PARKING_QUEUE = NON_BLOCKING_QUEUE_NAME + ".parking";
+  public static final String NON_BLOCKING_PARKING_KEY = NON_BLOCKING_PARKING_QUEUE + ".key";
+
+  @Bean
+  TopicExchange nonBlockingExchange() {
+    return new TopicExchange(NON_BLOCKING_EXCHANGE_NAME);
+  }
+
+
+  @Bean
+  public Queue nonBlockingQueue() {
+    return QueueBuilder.durable(NON_BLOCKING_QUEUE_NAME)
+        .build();
+  }
+
+  @Bean
+  public Queue nonBlockingWaitQueue() {
+    return QueueBuilder.durable(NON_BLOCKING_WAIT_QUEUE)
+        .deadLetterExchange(NON_BLOCKING_EXCHANGE_NAME)
+        .deadLetterRoutingKey(NON_BLOCKING_ROUTING_KEY_NAME)
+        .build();
+  }
+
+  @Bean
+  Queue nonBlockingParkingQueue() {
+    return QueueBuilder.durable(NON_BLOCKING_PARKING_QUEUE)
+        .build();
+  }
+
+  @Bean
+  Binding nonBlockingBinding() {
+    return BindingBuilder.bind(nonBlockingQueue()).to(nonBlockingExchange())
+        .with(NON_BLOCKING_ROUTING_KEY_NAME);
+  }
+
+  @Bean
+  Binding nonBlockingWaitBinding() {
+    return BindingBuilder.bind(nonBlockingWaitQueue()).to(nonBlockingExchange())
+        .with(NON_BLOCKING_ROUTING_WAIT_KEY);
+  }
+
+  @Bean
+  Binding nonBlockingParkingBinding() {
+    return BindingBuilder.bind(nonBlockingParkingQueue()).to(nonBlockingExchange())
+        .with(NON_BLOCKING_PARKING_KEY);
+  }
+
+
+
+
+
 }
