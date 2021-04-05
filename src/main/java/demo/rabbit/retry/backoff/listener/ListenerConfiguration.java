@@ -15,7 +15,12 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.backoff.BackOffPolicy;
+import org.springframework.retry.backoff.ExponentialBackOffPolicy;
+import org.springframework.retry.backoff.Sleeper;
+import org.springframework.retry.context.RetryContextSupport;
 import org.springframework.retry.interceptor.RetryOperationsInterceptor;
+import org.springframework.retry.support.RetrySimulator;
 
 @EnableRabbit
 @Configuration
@@ -29,6 +34,7 @@ public class ListenerConfiguration {
 
   @Bean
   public RetryOperationsInterceptor retryInterceptor(RabbitTemplate rabbitTemplate, ObjectMapper mapper) {
+
     return RetryInterceptorBuilder.stateless()
         .backOffOptions(5000, 3.0, 7000)
         .maxAttempts(3)

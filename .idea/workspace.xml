@@ -23,16 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ba6ded3-de90-466e-ba09-f84623ab8346" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ObservableRejectAndDontRequeueRecoverer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/config/BindingConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/config/BindingConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/DefaultPublishingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/DefaultPublishingHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/HandlerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/HandlerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/PublishingHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/PublishingHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/RetryQueuesInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/RetryQueuesInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/model/Request.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/demo/rabbit/retry/backoff/ExponentialBackoffLiveTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/demo/rabbit/retry/backoff/ExponentialBackoffLiveTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +67,7 @@
       <recent name="demo.rabbit.retry.backoff.listener" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed">
+  <component name="RunManager" selected="JUnit.ExponentialBackoffLiveTest.whenSendToBlockingQueueAndException_thenAllMessageProcessed">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.Application" />
       <module name="demo-rabbit-service" />
@@ -138,9 +130,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToBlockingQueueAndException_thenAllMessageProcessed" />
         <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed" />
         <item itemvalue="JUnit.ExponentialBackoffLiveTest" />
-        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToBlockingQueueAndException_thenAllMessageProcessed" />
         <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
@@ -211,25 +203,25 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="529" y="361" key="Git.Rebase.Log.Action.NewCommitMessage.Dialog/0.0.1440.900@0.0.1440.900" timestamp="1615454962392" />
-    <state width="1398" height="435" key="GridCell.Tab.0.bottom" timestamp="1617464461207">
+    <state width="1398" height="435" key="GridCell.Tab.0.bottom" timestamp="1617594743810">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="435" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1617464461207" />
+    <state width="1398" height="435" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1617594743810" />
     <state width="1398" height="435" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1617464163549" />
-    <state width="1398" height="435" key="GridCell.Tab.0.center" timestamp="1617464461206">
+    <state width="1398" height="435" key="GridCell.Tab.0.center" timestamp="1617594743808">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="435" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1617464461206" />
+    <state width="1398" height="435" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1617594743808" />
     <state width="1398" height="435" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1617464163547" />
-    <state width="1398" height="435" key="GridCell.Tab.0.left" timestamp="1617464461205">
+    <state width="1398" height="435" key="GridCell.Tab.0.left" timestamp="1617594743807">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="435" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1617464461205" />
+    <state width="1398" height="435" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1617594743807" />
     <state width="1398" height="435" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1617464163542" />
-    <state width="1398" height="435" key="GridCell.Tab.0.right" timestamp="1617464461206">
+    <state width="1398" height="435" key="GridCell.Tab.0.right" timestamp="1617594743809">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="435" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1617464461206" />
+    <state width="1398" height="435" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1617594743809" />
     <state width="1398" height="435" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1617464163548" />
     <state width="1398" height="371" key="GridCell.Tab.1.bottom" timestamp="1617463990901">
       <screen x="0" y="0" width="1440" height="900" />
