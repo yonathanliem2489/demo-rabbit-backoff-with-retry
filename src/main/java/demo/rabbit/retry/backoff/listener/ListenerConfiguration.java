@@ -26,6 +26,8 @@ import org.springframework.retry.support.RetrySimulator;
 @Configuration
 public class ListenerConfiguration {
 
+  // blocking configuration
+
   @Bean
   public ObservableRejectAndDontRequeueRecoverer observableRecoverer(RabbitTemplate rabbitTemplate,
       ObjectMapper mapper) {
@@ -41,6 +43,10 @@ public class ListenerConfiguration {
         .recoverer(observableRecoverer(rabbitTemplate, mapper))
         .build();
   }
+
+
+
+  // non-blocking configuration
 
   @Bean
   public SimpleRabbitListenerContainerFactory retryContainerFactory(ConnectionFactory connectionFactory, RetryOperationsInterceptor retryInterceptor) {

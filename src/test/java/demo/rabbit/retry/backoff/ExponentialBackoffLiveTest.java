@@ -40,7 +40,7 @@ public class ExponentialBackoffLiveTest {
 
     @Test
     public void whenSendToBlockingQueueAndException_thenAllMessageProcessed() throws Exception {
-        int nb = 1;
+        int nb = 3;
 
         CountDownLatch latch = new CountDownLatch(nb);
         observableRecoverer.setObserver(() -> latch.countDown());
