@@ -73,7 +73,7 @@ public class ListenerConfiguration {
 
   @Bean
   public RetryQueues retryQueues() {
-    return new RetryQueues(5000, 3.0, 7000, 3);
+    return new RetryQueues(10000, 3.0, 20000, 3);
   }
 
   @Bean

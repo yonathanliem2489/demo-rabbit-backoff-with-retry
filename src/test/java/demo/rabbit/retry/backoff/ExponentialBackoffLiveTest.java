@@ -7,6 +7,7 @@ import demo.rabbit.retry.backoff.listener.ListenerConfiguration;
 import demo.rabbit.retry.backoff.listener.ObservableRejectAndDontRequeueRecoverer;
 import demo.rabbit.retry.backoff.listener.RetryQueuesInterceptor;
 import java.util.concurrent.CountDownLatch;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ImportAutoConfiguration({
     RabbitAutoConfiguration.class,
@@ -54,12 +56,13 @@ public class ExponentialBackoffLiveTest {
 
     @Test
     public void whenSendToNonBlockingQueueAndException_thenAllMessageProcessed() throws Exception {
-        int nb = 3;
+        int nb = 1;
 
         CountDownLatch latch = new CountDownLatch(nb);
         retryQueues.setObserver(() -> latch.countDown());
 
         for (int i = 1; i <= nb; i++) {
+            log.info("publish message #{}", i);
             publishingHandler.handleNonBlocking("non-blocking message " + i).block();
         }
 

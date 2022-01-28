@@ -66,6 +66,7 @@ public class BindingConfiguration {
   @Bean
   public Queue nonBlockingQueue() {
     return QueueBuilder.durable(NON_BLOCKING_QUEUE_NAME)
+        .ttl(1*60*1000)
         .build();
   }
 

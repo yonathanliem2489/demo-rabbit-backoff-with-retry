@@ -44,9 +44,9 @@ public class DefaultPublishingHandler implements PublishingHandler {
     log.info("publish non blocking message");
     return Mono.fromRunnable(() -> {
       rabbitTemplate.convertAndSend(BindingConfiguration.NON_BLOCKING_EXCHANGE_NAME,
-          BindingConfiguration.NON_BLOCKING_ROUTING_KEY_NAME,
+          BindingConfiguration.NON_BLOCKING_ROUTING_WAIT_KEY,
           request, processor -> {
-        processor.getMessageProperties().setExpiration("10000");
+        processor.getMessageProperties().setExpiration("25000");
         return processor;
       });
     }).then();
