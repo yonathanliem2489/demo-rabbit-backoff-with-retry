@@ -16,6 +16,11 @@ public class BindingConfiguration {
   public static final String PARKING_QUEUE = QUEUE_NAME + ".parking";
   public static final String PARKING_KEY = PARKING_QUEUE + ".key";
 
+  public static final String QUEUE_DELAYED_NAME = "demo.delayed.queue";
+  public static final String EXCHANGE_DELAYED_NAME = "demo.delayed.exchange";
+  public static final String ROUTING_KEY_DELAYED_NAME = QUEUE_DELAYED_NAME + ".key";
+
+
   @Bean
   TopicExchange exchange() {
     return new TopicExchange(EXCHANGE_NAME);
