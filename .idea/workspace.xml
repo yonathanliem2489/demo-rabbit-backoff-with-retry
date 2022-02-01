@@ -22,7 +22,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ba6ded3-de90-466e-ba09-f84623ab8346" name="Default Changelist" comment="" />
+    <list default="true" id="2ba6ded3-de90-466e-ba09-f84623ab8346" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/delayed/DefaultPublishingDelayedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/delayed/PublishingDelayedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/DelayedConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/ListenerDelayedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/demo/rabbit/retry/backoff/DelayedExponentialBackoffLiveTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/config/BindingConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/config/BindingConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/HandlerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/handler/HandlerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/demo/rabbit/retry/backoff/ExponentialBackoffLiveTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/demo/rabbit/retry/backoff/ExponentialBackoffLiveTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +42,13 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -60,13 +79,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="demo.rabbit.retry.backoff" />
+      <recent name="demo.rabbit.retry.backoff.listener.delayed" />
+      <recent name="demo.rabbit.retry.backoff.handler.delayed" />
       <recent name="demo.rabbit.retry.backoff.listener" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed (1)">
+  <component name="RunManager" selected="JUnit.DelayedExponentialBackoffLiveTest.whenSendToDelayedQueueAndException_thenAllMessageProcessed">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.Application" />
-      <module name="demo-rabbit-service" />
+      <module name="demo-rabbit-backoff-with-retry" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="demo.rabbit.retry.backoff.*" />
@@ -77,8 +99,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExponentialBackoffLiveTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo-rabbit-service" />
+    <configuration name="DelayedExponentialBackoffLiveTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo-rabbit-backoff-with-retry" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="demo.rabbit.retry.backoff.*" />
@@ -86,14 +108,30 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="demo.rabbit.retry.backoff" />
-      <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.ExponentialBackoffLiveTest" />
+      <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.DelayedExponentialBackoffLiveTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExponentialBackoffLiveTest.whenSendToBlockingQueueAndException_thenAllMessageProcessed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo-rabbit-service" />
+    <configuration name="DelayedExponentialBackoffLiveTest.whenSendToDelayedQueueAndException_thenAllMessageProcessed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo-rabbit-backoff-with-retry" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="demo.rabbit.retry.backoff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="demo.rabbit.retry.backoff" />
+      <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.DelayedExponentialBackoffLiveTest" />
+      <option name="METHOD_NAME" value="whenSendToDelayedQueueAndException_thenAllMessageProcessed" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExponentialBackoffLiveTest.whenSendToDelayedQueueAndException_thenAllMessageProcessed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo-rabbit-backoff-with-retry" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="demo.rabbit.retry.backoff.*" />
@@ -102,7 +140,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="demo.rabbit.retry.backoff" />
       <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.ExponentialBackoffLiveTest" />
-      <option name="METHOD_NAME" value="whenSendToBlockingQueueAndException_thenAllMessageProcessed" />
+      <option name="METHOD_NAME" value="whenSendToDelayedQueueAndException_thenAllMessageProcessed" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -124,29 +162,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo-rabbit-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="demo.rabbit.retry.backoff.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="demo.rabbit.retry.backoff" />
-      <option name="MAIN_CLASS_NAME" value="demo.rabbit.retry.backoff.ExponentialBackoffLiveTest" />
-      <option name="METHOD_NAME" value="whenSendToNonBlockingQueueAndException_thenAllMessageProcessed" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed (1)" />
-        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToBlockingQueueAndException_thenAllMessageProcessed" />
-        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed" />
-        <item itemvalue="JUnit.ExponentialBackoffLiveTest" />
+        <item itemvalue="JUnit.DelayedExponentialBackoffLiveTest.whenSendToDelayedQueueAndException_thenAllMessageProcessed" />
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.DelayedExponentialBackoffLiveTest" />
+        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToDelayedQueueAndException_thenAllMessageProcessed" />
+        <item itemvalue="JUnit.ExponentialBackoffLiveTest.whenSendToNonBlockingQueueAndException_thenAllMessageProcessed (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -227,14 +249,79 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ListenerHandler.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/ObservableRejectAndDontRequeueRecoverer.java</url>
           <line>51</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/ListenerDelayedHandler.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/ListenerDelayedHandler.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/RetryQueuesInterceptor.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>140</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/rabbit/retry/backoff/listener/delayed/RetryQueuesDelayedInterceptor.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
